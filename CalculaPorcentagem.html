@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style e type="text/css">
+
+    .calcula{
+        background-color: #efefef;
+        text-align: center;
+        padding: 100px 0 100px 500px;
+        padding-top: 100px;
+        padding-left: 500px;  
+    }
+    .valor{
+        color: red;
+        width:20px;
+        
+    }
+    .valorF{
+        color: blue;
+    }
+
+</style>
+
+<script  type="text/javascript">
+
+    function calcula(){
+        var valido = document.getElementById("valor").value;
+
+            try{
+                if(valido == ""){
+                    alert("Preencha o valor a ser calculado...");
+                    throw "VAZIO";
+                }
+                if(isNaN(valido)){
+                    alert("Preencha o valor a ser calculado por um número...");
+                    throw "TEXTO";
+                }
+
+                valido = Number(valido);
+
+                var juros = document.getElementById("juros");
+                var escolha = juros.checked;
+                
+                if( escolha == true){
+                
+                var opcao = document.getElementById("10");
+                var estado = opcao.checked;
+
+                if(estado == true){
+                    document.getElementById("porcentagem").value = valido*10/100 + valido;
+                }
+
+                else{
+                    opcao=document.getElementById("20");
+                    var estado = opcao.checked;
+
+                    if(estado == true){
+                        document.getElementById("porcentagem").value = valido*20/100 + valido;
+                    }
+
+                    else{
+                        opcao=document.getElementById("30");
+                        var estado = opcao.checked;
+
+                        if (estado==true){
+                            document.getElementById("porcentagem").value = valido*30/100 + valido; 
+                        }
+                    }
+                }
+            }
+
+            else{
+                var opcao = document.getElementById("10");
+                var estado = opcao.checked;
+
+                if(estado == true){
+                    document.getElementById("porcentagem").value = valido - valido*10/100;
+                }
+
+                else{
+                    opcao=document.getElementById("20");
+                    var estado = opcao.checked;
+
+                    if(estado == true){
+                        document.getElementById("porcentagem").value = valido - valido*20/100 ;
+                    }
+
+                    else{
+                        opcao=document.getElementById("30");
+                        var estado = opcao.checked;
+
+                        if (estado==true){
+                            document.getElementById("porcentagem").value = valido - valido*30/100  ; 
+                        }
+                    }
+                }
+            } 
+
+        }    
+        catch(err) {
+            document.getElementById("porcentagem").value = "Erro: " + err;
+        }
+    }
+        
+
+    
+
+</script>
+
+<body>
+    <div class="calcula">  
+        <header>
+            <table>
+                <tr>
+                    <td> <label class="valor" for="valor">Digite o Valor: <input type="text" id="valor"></label> </td>
+                    <td> <label class="valor" for="valor">Calculo com: </label> </td>
+                    <td> <input type="radio" name="pref" id="juros" onchange="calcula()">Juros</td>
+                    <td> <input type="radio" name="pref" id="desconto" onchange="calcula()">Desconto</td>
+                </tr>
+            </table>
+        </header>
+        <footer>
+            <table>
+                <tr>
+                    <td> <input type="radio" name="porc" id="10"
+                        value="10" onchange="calcula()">10% do valor</td>
+                    <td> <input type="radio" name="porc" id="20"
+                        value="20" onchange="calcula()">20% do valor</td>
+                    <td> <input type="radio" name="porc" id="30"
+                        value="30" onchange="calcula()">30% do valor</td>
+                </tr>
+                <tr>
+                    <td><label class="valorF" for="porcentagem" class="porcentagem">Valor Final:</label></td>
+                    <td><input type="text" id="porcentagem" class="porcentagem" readonly></td><td></td>
+                </tr>
+            </table>
+        </footer>
+    </div> 
+</body>
+</html>
